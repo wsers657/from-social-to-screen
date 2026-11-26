@@ -28,7 +28,13 @@ function comparison(collection, period) {
     return [valid.length === count ? valid.reduce((sum, value) => sum + value, 0) : null, valid.length];
   }
   const [current, currentDays] = total(start), [previous, previousDays] = total(previousStart);
-  return { current, previous, change_pct: current != null && previous > 0 ? Math.round((current - previous) / previous * 1000) / 10 : null,
+  let change = null;
+  if (current != null && previous > 0) {
+    const delta = BigInt(current) - BigInt(previous), base = BigInt(previous);
+    const scaled = ((delta < 0n ? -delta : delta) * 2000n + base) / (2n * base);
+    change = scaled === 0n ? 0 : (delta < 0n ? -1 : 1) * Number(scaled) / 10;
+  }
+  return { current, previous, change_pct: change,
     days: count, current_start: day(start), current_end: day(end), previous_start: day(previousStart), previous_end: day(start - 86400000),
     current_days: currentDays, previous_days: previousDays, unit: 'consultations de l’article', reference_day: collection.reference_day };
 }
