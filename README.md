@@ -1,9 +1,7 @@
 # From Social to Screen
 
-Prototype public de veille pour le cas Mediawan × Albert School.
+Base d’interface volontairement vide, à concevoir selon les prochaines indications.
 
-Quatre sujets de pratiques établies, sélectionnés manuellement. Les consultations réelles Wikimedia ne prouvent pas une émergence. Aucun résultat fictif.
+Accueil vide, Ma veille et Connexions à gauche, Compte en haut à droite. Aucun contenu prédéfini, appel API, formulaire ou stockage simulé.
 
-Recherche, filtres, quatre horizons, preuves et exports sont disponibles. Les comptes, Ma veille, les notes et les collectes privées attendent un backend Supabase actif. Aucun compte ou enregistrement en ligne n’est simulé.
-
-Ce dépôt contient uniquement la version statique publique. Aucun secret, document fourni, compte ou donnée privée n’est publié.
+Les comptes et la veille en ligne ne sont pas activés. Ce dépôt contient uniquement cinq fichiers publics ; aucun secret, document fourni ou donnée privée.
