@@ -1,0 +1,67 @@
+[
+  {
+    "id": "oriane",
+    "name": "Oriane",
+    "type": "Fournisseur de vidéos sociales",
+    "mode": "Backend Python à héberger avant recherche API",
+    "documentation": "https://connect.oriane.xyz/rest/docs",
+    "purpose": "Observer les discours et pratiques de visionnage sur YouTube, TikTok et Instagram.",
+    "requirement": "Clé privée et validation de l'utilisation d'Oriane dans le cadre Mediawan. Un intermédiaire ne compte pas comme une plateforme supplémentaire.",
+    "approved": false,
+    "credential_present": false,
+    "last_success_at": null,
+    "documentation_url": "https://connect.oriane.xyz/rest/docs"
+  },
+  {
+    "id": "google_trends",
+    "name": "Google Trends",
+    "type": "Intérêt de recherche",
+    "mode": "Import Python non disponible sur GitHub Pages",
+    "documentation": "https://developers.google.com/search/apis/trends",
+    "purpose": "Recouper l'intérêt pour un usage avec une série de recherche datée.",
+    "requirement": "L'API officielle demande un accès alpha. L'import d'un export officiel est disponible dès maintenant.",
+    "approved": false,
+    "credential_present": false,
+    "last_success_at": null,
+    "documentation_url": "https://developers.google.com/search/apis/trends"
+  },
+  {
+    "id": "wattpad",
+    "name": "Wattpad",
+    "type": "Pratiques de lecture",
+    "mode": "Accès documenté à fournir",
+    "documentation": "https://www.wattpad.com/",
+    "purpose": "Étudier les usages de lecture en épisodes et les communautés, après validation de l'accès.",
+    "requirement": "Aucune API publique actuelle vérifiée. Fournir documentation et autorisation avant de développer un adaptateur ; aucun scraping ajouté.",
+    "approved": false,
+    "credential_present": false,
+    "last_success_at": null,
+    "documentation_url": "https://www.wattpad.com/"
+  },
+  {
+    "id": "youtube",
+    "name": "YouTube",
+    "type": "Vidéos et formats",
+    "mode": "Adaptateur direct à préparer",
+    "documentation": "https://developers.google.com/youtube/v3",
+    "purpose": "Analyser les usages de découverte et de consommation des vidéos publiques.",
+    "requirement": "Définir les requêtes, l'accès officiel et les quotas. Les résultats YouTube via Oriane restent une seule plateforme.",
+    "approved": false,
+    "credential_present": false,
+    "last_success_at": null,
+    "documentation_url": "https://developers.google.com/youtube/v3"
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "type": "Discussions publiques",
+    "mode": "Adaptateur direct à préparer",
+    "documentation": "https://www.reddit.com/dev/api/",
+    "purpose": "Recouper les habitudes exprimées par les communautés, sans les assimiler à des audiences.",
+    "requirement": "Accès et conditions à vérifier avant collecte. Aucun endpoint non documenté utilisé.",
+    "approved": false,
+    "credential_present": false,
+    "last_success_at": null,
+    "documentation_url": "https://www.reddit.com/dev/api/"
+  }
+]

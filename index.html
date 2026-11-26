@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos;; img-src &apos;self&apos; data:; connect-src &apos;self&apos;; object-src &apos;none&apos;; base-uri &apos;self&apos;; form-action &apos;self&apos;">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="From Social to Screen : explorer des signaux culturels, vérifier leurs sources et éclairer les décisions éditoriales de Mediawan.">
+    <title>
+      From Social to Screen · Mediawan
+    </title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js">
+    </script>
+  </head>
+  <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <symbol id="i-radar" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"/>
+          <circle cx="12" cy="12" r="5"/>
+          <path d="m12 12 7-7M12 3v2M3 12h2M12 19v2M19 12h2"/>
+          <circle cx="12" cy="12" r="1"/>
+        </symbol>
+        <symbol id="i-bookmark" viewBox="0 0 24 24">
+          <path d="M6 4h12v17l-6-4-6 4z"/>
+        </symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24">
+          <path d="m12 3 10 6-10 6L2 9zM3 13l9 5 9-5M3 17l9 5 9-5"/>
+        </symbol>
+        <symbol id="i-user" viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21v-2a8 8 0 0 1 16 0v2"/>
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24">
+          <circle cx="10.5" cy="10.5" r="6.5"/>
+          <path d="m16 16 5 5"/>
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="m6 6 12 12M6 18 18 6"/>
+        </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16"/>
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+          <path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/>
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24">
+          <path d="M12 3 3 7v5c0 5 9 10 9 10s9-5 9-10V7zM8 12l3 3 5-6"/>
+        </symbol>
+        <symbol id="i-spark" viewBox="0 0 24 24">
+          <path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3z"/>
+        </symbol>
+        <symbol id="i-exit" viewBox="0 0 24 24">
+          <path d="M10 4H4v16h6m5-13 5 5-5 5m-7-5h12"/>
+        </symbol>
+      </defs>
+    </svg>
+    <a class="skip-link" href="#main-content">
+      Aller au contenu
+    </a>
+    <button class="nav-backdrop" id="nav-backdrop" aria-label="Fermer la navigation" hidden>
+    </button>
+    <aside class="sidebar" id="sidebar" aria-label="Navigation principale">
+      <a class="brand" href="#radar" aria-label="SIGNAL, radar des usages">
+        <span class="brand-mark" aria-hidden="true">
+          <i>
+          </i>
+          <i>
+          </i>
+          <i>
+          </i>
+        </span>
+        <span>
+          SIGNAL
+          <span class="brand-caption">
+            FROM SOCIAL TO SCREEN
+          </span>
+        </span>
+      </a>
+      <div class="workspace-label">
+        <span class="workspace-icon">
+          M
+        </span>
+        <div>
+          Mediawan
+          <span>
+            Espace de veille · concept
+          </span>
+        </div>
+        <span class="workspace-tag">
+          LAB
+        </span>
+      </div>
+      <p class="nav-label">
+        ESPACE DE TRAVAIL
+      </p>
+      <nav>
+        <a href="#radar" data-view="radar" aria-current="page">
+          <svg class="icon">
+            <use href="#i-radar"/>
+          </svg>
+          Accueil & radar
+          <span class="nav-active-dot">
+          </span>
+        </a>
+        <a href="#saved" data-view="saved">
+          <svg class="icon">
+            <use href="#i-bookmark"/>
+          </svg>
+          Ma veille
+          <span class="count" id="saved-count">
+            0
+          </span>
+        </a>
+        <a href="#sources" data-view="sources">
+          <svg class="icon">
+            <use href="#i-layers"/>
+          </svg>
+            Sources & API
+        </a>
+        <a href="#account" data-view="account">
+          <svg class="icon">
+            <use href="#i-user"/>
+          </svg>
+          Mon compte
+        </a>
+      </nav>
+      <div class="sidebar-insight">
+        <span class="tiny-tag">
+          LE CAP
+        </span>
+        <p>
+          Un usage à comprendre.
+          <br>
+          Une décision à éclairer.
+        </p>
+        <span>
+          Consommation · Découverte · Participation
+        </span>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="sandbox-label">
+          <span>
+          </span>
+          Pilote local · accès privé
+        </div>
+        <button class="sidebar-profile" id="sidebar-profile">
+          <span class="avatar" id="sidebar-avatar">
+            V
+          </span>
+          <span>
+            <strong id="sidebar-name">
+              Espace visiteur
+            </strong>
+            <small id="sidebar-role">
+              Créer votre veille personnelle
+            </small>
+          </span>
+          <svg class="icon">
+            <use href="#i-user"/>
+          </svg>
+        </button>
+      </div>
+    </aside>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          <button class="icon-button mobile-menu" id="menu-button" aria-label="Ouvrir la navigation" aria-controls="sidebar" aria-expanded="false">
+            <svg class="icon">
+              <use href="#i-menu"/>
+            </svg>
+          </button>
+          <span>
+            Workspace
+          </span>
+          <span class="breadcrumb-divider">
+            /
+          </span>
+          <strong id="current-view">
+            Accueil & radar
+          </strong>
+        </div>
+        <div class="top-actions">
+          <span class="environment-pill" id="data-mode">
+            Collectes documentées
+          </span>
+          <button class="button button-small button-outline" id="header-account">
+            Se connecter
+          </button>
+        </div>
+      </header>
+      <main id="main-content" tabindex="-1">
+        <div class="demo-banner">
+          <span class="banner-icon">
+            i
+          </span>
+          <p>
+            <strong>
+              Des observations vérifiables.
+            </strong>
+              Données publiques réelles et collectes privées. Les variations observées ne prouvent pas, à elles seules, une émergence.
+          </p>
+          <a href="#sources">
+            Voir les sources
+          </a>
+        </div>
+        <section id="view-radar" class="view signal-home" aria-label="From Social to Screen : accueil et radar">
+          <nav class="home-nav" aria-label="Les six étapes du radar">
+            <a href="#intention">La décision</a><a href="#horizons">Les horizons</a><a href="#rechercher">Le radar</a><a href="#preuves">Les preuves</a><a href="#provenance">Les sources</a><a href="#methode">La méthode</a>
+          </nav>
+          <section id="intention" data-home-section aria-labelledby="radar-heading" class="home-hero">
+            <div class="hero-copy">
+              <p class="eyebrow">MEDIAWAN × ALBERT SCHOOL · PROTOTYPE DE VEILLE</p>
+              <p class="product-name">From Social to Screen</p>
+              <h1 id="radar-heading">Repérer ce qui change.<br><span>Décider quoi explorer.</span></h1>
+              <p class="hero-description">Rechercher les premiers signes de nouvelles pratiques culturelles, vérifier ce qui les étaye et préparer une décision éditoriale. Sans promettre le prochain succès.</p>
+              <div class="hero-actions"><a class="button button-primary" href="#rechercher">Explorer le radar</a><button class="button button-outline" id="featured-open" disabled>Voir une fiche sourcée</button></div>
+              <p class="hero-scope"><strong>Axe de ce prototype : Consommation.</strong> Ce que les publics regardent, lisent, jouent ou écoutent. Contenus et Talents restent des extensions possibles, sans classement opérationnel dans cette version.</p>
+            </div>
+            <aside class="hero-brief" aria-labelledby="decision-title">
+              <span class="status-pill">UNE DÉCISION À ÉCLAIRER</span>
+              <h2 id="decision-title">Du signal à la question éditoriale.</h2>
+              <label for="decision-focus">Votre intention<select id="decision-focus"><option value="develop">Développer un contenu</option><option value="acquire">Étudier une acquisition</option><option value="talent">Étudier un talent à approcher</option></select></label>
+              <p id="decision-question">Ce changement d’intérêt mérite-t-il un test de format ?</p>
+              <div class="brief-proof"><strong>Pour décider</strong><p id="decision-evidence">Recouper les pratiques, préciser le public et vérifier la persistance du signal.</p></div>
+              <a class="text-button" href="#preuves">Examiner les éléments disponibles</a>
+            </aside>
+          </section>
+          <section id="horizons" data-home-section aria-labelledby="horizons-heading" class="home-section horizon-section">
+            <div class="section-heading"><div><p class="eyebrow">LES TENDANCES À L’ÉPREUVE DES DONNÉES</p><h2 id="horizons-heading">Un jour ne raconte pas toute l’histoire.</h2></div><button class="button button-outline button-small" id="refresh-snapshot">Actualiser l’instantané</button></div>
+            <p class="section-intro">Comparez deux fenêtres de même durée. Le radar montre ici l’évolution de consultations d’articles, sur des sujets choisis manuellement. Il ne classe pas encore les usages émergents du marché.</p>
+            <div class="horizon-toolbar"><div class="period-tabs" role="group" aria-label="Horizon de comparaison"><button data-period="daily" aria-pressed="false">Jour</button><button data-period="weekly" aria-pressed="true">Semaine</button><button data-period="monthly" aria-pressed="false">Mois</button><button data-period="yearly" aria-pressed="false">Année</button></div><label hidden>Horizon<select id="period"><option value="daily">Jour</option><option value="weekly" selected>Semaine</option><option value="monthly">Mois</option><option value="yearly">Année</option></select></label><p id="window-caption" class="muted small" role="status">Lecture des périodes disponibles…</p></div>
+            <div class="horizon-metrics"><article><span>Sujets documentés</span><strong id="total-stat">—</strong><small>sélection manuelle du prototype</small></article><article><span>Comparaisons calculables</span><strong id="records-stat">—</strong><small>deux fenêtres complètes requises</small></article><article><span>Sources représentées</span><strong id="sources-stat">—</strong><small>dans les observations chargées</small></article><article><span>Dernière collecte publique</span><strong id="snapshot-date" class="metric-date">Chargement…</strong><small id="snapshot-freshness">La date du signal reste distincte.</small></article></div>
+            <p id="snapshot-operation" class="form-message" role="status" aria-live="polite"></p>
+            <a class="text-button" href="#rechercher">Rechercher dans cet instantané</a>
+          </section>
+          <section id="rechercher" data-home-section aria-labelledby="discovery-heading" class="home-section discovery">
+            <div class="section-heading"><div><p class="eyebrow">RECHERCHER ET RECROISER</p><h2 id="discovery-heading">Trouvez le sujet derrière le signal.</h2></div><button class="button button-outline button-small" id="export-radar" disabled>Exporter la sélection</button></div>
+            <p class="section-intro">Recherchez un mot-clé, filtrez par catégorie ou par origine, puis ouvrez une fiche. Une variation de consultation constitue un indice à approfondir, pas une recommandation d’achat.</p>
+            <form id="filters" class="filter-bar" role="search">
+              <label class="search-field"><span class="sr-only">Mot-clé ou pratique culturelle</span><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="query" type="search" placeholder="Rechercher une pratique, un mot-clé…" autocomplete="off"><kbd>/</kbd></label>
+              <label><span class="sr-only">Catégorie</span><select id="category"><option value="">Toutes les catégories</option></select></label>
+              <label><span class="sr-only">Origine</span><select id="source-filter"><option value="">Toutes les origines</option></select></label>
+              <button type="reset" class="reset-button">Effacer</button>
+            </form>
+            <div class="list-toolbar"><p id="results-caption" class="results-caption" role="status" aria-live="polite">Chargement des observations…</p><label class="sort-label">Trier par<select id="sort"><option value="change_pct">Variation observée</option><option value="record_count">Lignes conservées</option><option value="saved_at">Collecte récente</option></select></label></div>
+            <div id="radar-error" class="error-box" role="alert" hidden></div><div id="results" class="trend-grid" aria-busy="true"></div>
+            <p class="scope-note">Les titres décrivent des sujets étudiés. Aucun signal social, contenu précis ou talent n’est ajouté sans collecte vérifiable.</p>
+          </section>
+          <section id="preuves" data-home-section aria-labelledby="proof-heading" class="home-section proof-section">
+            <div class="section-heading"><div><p class="eyebrow">MESURER AVANT D’INTERPRÉTER</p><h2 id="proof-heading">Une évolution se vérifie dans les faits.</h2></div><span class="status-pill">DONNÉES RÉELLES · PAS DE SCORE PRÉDICTIF</span></div>
+            <p class="section-intro">La mesure, ses dates et son périmètre restent visibles. Les articles documentent la pratique ; des publications sociales et des données de consommation restent à réunir pour étayer une émergence.</p>
+            <div id="proof-content" class="proof-content" aria-live="polite"><div class="empty-state"><p>Choisissez une fiche dans le radar pour examiner les mesures et leurs sources.</p></div></div>
+          </section>
+          <section id="provenance" data-home-section aria-labelledby="provenance-heading" class="home-section">
+            <div class="section-heading"><div><p class="eyebrow">SAVOIR D’OÙ VIENT CHAQUE INDICE</p><h2 id="provenance-heading">Quatre sources de travail. Des statuts explicites.</h2></div><a href="#sources" class="button button-outline button-small">Ouvrir Sources & API</a></div>
+            <p class="section-intro">Wikimedia alimente l’instantané de démonstration réel. Google Trends, YouTube et Reddit constituent les trois autres sources proposées pour recouper les signaux ; leur accès et leur admissibilité restent à valider. Oriane est un intermédiaire pour les vidéos sociales, pas une source supplémentaire.</p>
+            <div id="home-sources" class="home-source-grid" aria-live="polite"><p>Lecture de la provenance…</p></div>
+            <p class="scope-note">La fiabilité dépend du périmètre, de la couverture, de la fraîcheur et du recoupement. Aucun pourcentage de confiance n’est attribué sans méthode validée. Wattpad reste une piste hors de cette sélection.</p>
+          </section>
+          <section id="methode" data-home-section aria-labelledby="method-heading" class="home-section method-section">
+            <div><p class="eyebrow">LES LIMITES FONT PARTIE DU RÉSULTAT</p><h2 id="method-heading">Un point de départ pour l’enquête éditoriale.</h2><p class="section-intro">Le prototype rend les observations consultables et comparables. Il ne démontre ni un succès futur, ni une adéquation au catalogue Mediawan, ni la disponibilité de droits ou d’un talent.</p><button class="button button-primary" id="prepare-analysis">Préparer mon analyse</button></div>
+            <div class="method-questions">
+              <details open><summary>Qu’est-ce qui est réellement mesuré ?</summary><p>Les consultations quotidiennes de quatre articles de Wikipédia en anglais, via l’API publique Wikimedia, tous accès confondus et catégorie « user ». Ce ne sont ni des personnes uniques, ni des visionnages, ni un marché géographique. Les sujets, déjà établis, ont été sélectionnés manuellement.</p></details>
+              <details><summary>Comment lire les variations ?</summary><p>Variation = (fenêtre actuelle − précédente) / précédente × 100. Fenêtres consécutives de 1, 7, 30 ou 365 jours, terminées à la date de référence affichée. Une journée manquante ou une base nulle rend la variation indisponible. Les fenêtres ne prouvent pas une causalité.</p></details>
+              <details><summary>Que manque-t-il pour parler d’émergence ?</summary><p>Des publications sociales datées, un recoupement entre sources indépendantes, un historique stable et un examen des volumes, du public et des biais de sélection. Les pics liés à l’actualité ou à un succès déjà installé doivent être distingués d’un premier signal.</p></details>
+              <details><summary>Quel est l’état du prototype ?</summary><p>Aucune donnée simulée n’est chargée. L’instantané public peut être relu hors ligne depuis le serveur local et actualisé explicitement. Les CSV sont déclarés officiels par leur importateur ; leur authenticité n’est pas certifiée. Les accès non testés sont signalés. La décision finale reste humaine.</p></details>
+            </div>
+          </section>
+        </section>
+        <section id="view-saved" class="view" aria-labelledby="saved-heading" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">
+                VOTRE ESPACE PERSONNEL
+              </p>
+              <h1 id="saved-heading">
+                Ma veille
+                <span class="title-dot">
+                  .
+                </span>
+              </h1>
+              <p class="page-description">
+                Retrouvez les usages enregistrés et le contexte de vos prochaines décisions.
+              </p>
+            </div>
+            <button id="export-saved" class="button button-outline">
+              <svg class="icon">
+                <use href="#i-download"/>
+              </svg>
+              Exporter ma veille
+            </button>
+          </div>
+          <p id="saved-period" class="results-caption"></p>
+          <div id="saved-content" class="trend-grid">
+          </div>
+        </section>
+        <section id="view-sources" class="view" aria-labelledby="sources-heading" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">
+                LA CONFIANCE COMMENCE PAR LA PROVENANCE
+              </p>
+              <h1 id="sources-heading">
+                Sources & API
+                <span class="title-dot">
+                  .
+                </span>
+              </h1>
+              <p class="page-description">
+                Préparer vos accès, examiner des observations et conserver les preuves utiles à votre veille.
+              </p>
+            </div>
+            <span class="status-pill" id="sources-summary">
+              Lecture des connexions…
+            </span>
+          </div>
+          <section class="public-source-panel" aria-labelledby="public-source-heading"><div><span class="status-pill">SOURCE DE L’INSTANTANÉ PUBLIC</span><h2 id="public-source-heading">Wikimedia</h2><p id="public-source-status" class="muted">Lecture de l’instantané réel…</p><p class="small">Consultations d’articles, distinctes des audiences et des publications sociales. Les collectes complémentaires de votre compte restent privées.</p></div><a class="button button-outline" href="#horizons">Consulter et actualiser l’instantané</a></section>
+          <div class="section-heading">
+            <p class="muted small">Cible : 3 à 4 sources publiques validées. Oriane est un intermédiaire, pas une plateforme supplémentaire.</p>
+            <button type="button" class="button button-outline button-small" id="refresh-sources">Actualiser les accès</button>
+          </div>
+          <p id="sources-error" class="form-error" role="alert" hidden></p>
+          <div id="source-cards" class="source-grid"></div>
+          <p id="source-guest" class="source-login-note">Connectez-vous pour préparer vos accès et conserver vos collectes.
+            <button type="button" class="text-button" id="sources-login">Se connecter</button>
+          </p>
+          <section id="source-workspace" class="source-workspace" aria-labelledby="source-workspace-title" hidden>
+            <div class="section-heading">
+              <div><p class="eyebrow">PRÉPARER LA SOURCE</p><h2 id="source-workspace-title" tabindex="-1">Oriane</h2></div>
+              <a id="source-documentation" class="text-button" target="_blank" rel="noopener noreferrer">Documentation de référence</a>
+            </div>
+            <p id="source-requirement" class="muted small"></p>
+            <form id="source-config-form" class="source-form">
+              <label>Documentation de votre accès
+                <input id="source-doc-url" type="url" required maxlength="2000" placeholder="https://…">
+              </label>
+              <label id="source-key-label">Clé privée Oriane
+                <input id="source-key" type="password" autocomplete="new-password" maxlength="2048" placeholder="Laisser vide pour conserver la clé existante">
+                <small>Transmise uniquement au serveur local, jamais renvoyée au navigateur.</small>
+              </label>
+              <label class="checkbox-label" id="clear-key-label"><input id="source-clear-key" type="checkbox">Retirer ma clé enregistrée dans ce compte</label>
+              <label class="checkbox-label"><input id="source-approved" type="checkbox">L'équipe a validé l'utilisation de cette source dans le cadre du brief Mediawan.</label>
+              <p class="muted small">Cette déclaration ne vérifie pas automatiquement les droits, les conditions du fournisseur ou son admissibilité au projet.</p>
+              <button type="submit" class="button button-outline">Enregistrer la configuration</button>
+              <p id="source-config-status" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+            <div id="oriane-workbench" class="source-action-panel">
+              <div><p class="eyebrow">DU SOCIAL AUX USAGES</p><h3>Explorer les publications</h3></div>
+              <p class="muted small">Recherche explicite, 30 lignes fournisseur par page, 300 maximum. Chaque nouvelle page peut consommer des crédits. Les transcriptions sont des indices à relire.</p>
+              <form id="oriane-search-form" class="source-form">
+                <label>Usage ou expression à rechercher<input id="oriane-query" required minlength="2" maxlength="100" placeholder="Ex. micro drama, watch party, comfort show"></label>
+                <div class="source-form-row">
+                  <label>Période<select id="oriane-period"><option value="1">Dernier jour</option><option value="7">7 jours</option><option value="30" selected>30 jours</option><option value="365">365 jours</option><option value="all">Tout l'index</option></select></label>
+                  <label>Plateforme<select id="oriane-platform"><option value="all">Toutes les plateformes</option><option value="youtube">YouTube</option><option value="tiktok">TikTok</option><option value="instagram">Instagram</option></select></label>
+                  <label>Ordre<select id="oriane-sort"><option value="recent">Publications récentes</option><option value="first">Premières retrouvées</option><option value="audience">Les plus vues</option></select></label>
+                </div>
+                <label>Catégorie d'usage<select id="oriane-category"><option>Découverte</option><option>Rythme de visionnage</option><option>Participation</option><option>Choix de contenus</option></select></label>
+                <label>Décision à éclairer<textarea id="oriane-decision" maxlength="500" rows="2" placeholder="Quel choix de format ou de distribution souhaitez-vous approfondir ?"></textarea></label>
+                <p id="oriane-readiness" class="muted small"></p>
+                <button type="submit" class="button button-primary" id="oriane-search-submit">Rechercher les publications</button>
+              </form>
+            </div>
+            <div id="trends-workbench" class="source-action-panel" hidden>
+              <p class="eyebrow">RECOUPER L'INTÉRÊT DE RECHERCHE</p><h3>Importer un export Google Trends</h3>
+              <p class="muted small">Utilisez le CSV officiel « Intérêt dans le temps ». Les valeurs d'un même export sont normalisées ensemble ; elles ne sont pas des volumes de recherche. L'API alpha sera ajoutée après réception de son contrat d'accès.</p>
+              <form id="trends-import-form" class="source-form">
+                <label>Usage étudié<input id="trends-query" required minlength="2" maxlength="100" placeholder="Ex. lecture en épisodes"></label>
+                <label>URL de l'exploration d'origine<input id="trends-url" type="url" required placeholder="https://trends.google.com/trends/explore?…"></label>
+                <div class="source-form-row">
+                  <label>Fichier CSV<input id="trends-file" type="file" accept=".csv,text/csv" required></label>
+                  <label>Colonne de série après la date<input id="trends-column" type="number" min="1" max="8" value="1" required></label>
+                  
+                </div>
+                <label>Catégorie d'usage<select id="trends-category"><option>Découverte</option><option>Rythme de visionnage</option><option>Participation</option><option>Choix de contenus</option></select></label>
+                <label>Décision à éclairer<textarea id="trends-decision" maxlength="500" rows="2" placeholder="Comment cette série aide-t-elle votre étude d'usage ?"></textarea></label>
+                <label class="source-checkbox"><input id="trends-confirm-real" type="checkbox" required> Je confirme que ce fichier est un export officiel Google Trends réel et non modifié. Son origine reste sous ma responsabilité.</label>
+                <button type="submit" class="button button-primary" id="trends-import-submit">Importer et conserver la série</button>
+              </form>
+            </div>
+            <div id="future-workbench" class="source-action-panel" hidden>
+              <h3>Préparer la connexion</h3>
+              <p class="muted small">La référence de votre accès est conservée dans votre espace. Fournissez sa documentation et un exemple de réponse anonymisé pour activer la collecte. Aucune requête n'est effectuée tant que la connexion n'est pas disponible.</p>
+            </div>
+          </section>
+          <p id="source-operation-error" class="form-error" role="alert" hidden></p>
+          <section id="source-selection" class="source-workspace" aria-labelledby="source-selection-title" hidden>
+            <div class="section-heading"><div><p class="eyebrow">SÉLECTION EXAMINÉE</p><h2 id="source-selection-title"></h2></div><span id="source-selection-nature" class="status-pill"></span></div>
+            <div id="source-selection-counts" class="source-selection-counts"></div>
+            <p id="source-analysis" class="muted small"></p>
+            <p id="source-selection-limit" class="muted small"></p>
+            <div id="source-records" class="source-records"></div>
+            <div class="source-actions"><button type="button" class="button button-outline" id="source-next">Charger la page suivante</button><button type="button" class="button button-primary" id="source-save">Conserver cette sélection</button><button type="button" class="button button-outline" id="source-export">Exporter cette collecte</button></div>
+          </section>
+          <section class="source-history" aria-labelledby="source-history-title"><div class="section-heading"><h2 id="source-history-title">Mes collectes privées enregistrées</h2></div><div id="source-history-list"></div></section>
+          <section class="method-panel">
+            <div><p class="eyebrow">DES SOURCES AVANT LES CONCLUSIONS</p><h2>Documenter.<br>Comparer. Décider.</h2><p>Une requête n’est pas un usage émergent établi. Chaque conclusion devra être justifiée par des observations comparables.</p></div>
+            <div class="method-steps">
+              <article><span>01 / PROVENANCE</span><h3>Retrouver l’origine</h3><p>Liens publics, date de collecte ou d’import, et requête conservés avec les observations. Les CSV restent déclaratifs.</p></article>
+              <article><span>02 / MESURES</span><h3>Respecter les unités</h3><p>Un indice Google Trends n’est pas un volume de recherche. Les valeurs manquantes ne deviennent jamais zéro.</p></article>
+              <article><span>03 / EXAMEN</span><h3>Conclure avec des preuves</h3><p>Aucun score ni croissance sans historique comparable. Les collectes sont triées par conservation, effectifs ou plateformes.</p></article>
+            </div>
+          </section>
+        </section>
+        <section id="view-account" class="view" aria-labelledby="account-heading" hidden>
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">
+                VOTRE ESPACE DE TRAVAIL
+              </p>
+              <h1 id="account-heading">
+                Mon compte
+                <span class="title-dot">
+                  .
+                </span>
+              </h1>
+              <p class="page-description">
+                Votre profil et votre veille personnelle, dans un espace qui vous appartient.
+              </p>
+            </div>
+          </div>
+          <div id="account-guest" class="empty-state account-empty">
+            <span class="empty-icon">
+              <svg class="icon">
+                <use href="#i-user"/>
+              </svg>
+            </span>
+            <h2>
+              Donnez une continuité à votre veille.
+            </h2>
+            <p>
+              Créez un compte local pour enregistrer des usages et garder vos notes d'analyse.
+            </p>
+            <button class="button button-primary" id="create-account">
+              Créer mon espace
+            </button>
+            <button class="text-button" id="existing-account">
+              J'ai déjà un compte
+            </button>
+          </div>
+          <div id="account-content" hidden>
+            <div class="account-layout">
+              <article class="profile-card">
+                <span class="avatar avatar-large" id="profile-avatar">
+                  —
+                </span>
+                <h2 id="profile-name">
+                  —
+                </h2>
+                <p id="profile-email">
+                  —
+                </p>
+                <span class="status-pill">
+                  Compte local
+                </span>
+                <div class="profile-summary">
+                  <span>
+                    Usages enregistrés
+                    <strong id="profile-saved">
+                      0
+                    </strong>
+                  </span>
+                  <span>
+                    Membre depuis
+                    <strong id="profile-created">
+                      —
+                    </strong>
+                  </span>
+                </div>
+                <button class="button button-outline" id="logout">
+                  <svg class="icon">
+                    <use href="#i-exit"/>
+                  </svg>
+                  Se déconnecter
+                </button>
+              </article>
+              <article class="settings-card">
+                <div class="panel-heading">
+                  <div>
+                    <h2>
+                      Informations du profil
+                    </h2>
+                    <p>
+                      Utilisées pour personnaliser votre espace de travail.
+                    </p>
+                  </div>
+                </div>
+                <form id="profile-form">
+                  <label>
+                    Nom affiché
+                    <input id="profile-name-input" name="name" autocomplete="name" required minlength="2" maxlength="80">
+                  </label>
+                  <label>
+                    Équipe ou fonction
+                    <input id="profile-team-input" name="team" maxlength="80" placeholder="Équipe de veille">
+                  </label>
+                  <label>
+                    Adresse e-mail
+                    <input id="profile-email-input" type="email" readonly aria-describedby="email-note">
+                  </label>
+                  <small id="email-note">
+                    L'adresse identifie ce compte local. Elle n'a pas été vérifiée par e-mail.
+                  </small>
+                  <p id="profile-error" class="form-error" role="alert" hidden>
+                  </p>
+                  <button class="button button-primary" type="submit">
+                    Enregistrer les modifications
+                  </button>
+                </form>
+                <div class="privacy-note">
+                  <svg class="icon">
+                    <use href="#i-shield"/>
+                  </svg>
+                  <p>
+                    Vos favoris et notes sont privés à votre compte dans cette instance. Le radar affiche uniquement vos collectes documentées.
+                  </p>
+                </div>
+                <details class="account-section">
+                  <summary>Changer mon mot de passe</summary>
+                  <p>Les autres sessions de ce compte seront déconnectées. Votre veille sera conservée.</p>
+                  <form id="password-form">
+                    <label>Mot de passe actuel
+                      <input id="current-password" type="password" autocomplete="current-password" required maxlength="128">
+                    </label>
+                    <label>Nouveau mot de passe
+                      <input id="new-password" type="password" autocomplete="new-password" required minlength="12" maxlength="128" aria-describedby="new-password-hint">
+                    </label>
+                    <label>Confirmer le nouveau mot de passe
+                      <input id="confirm-password" type="password" autocomplete="new-password" required minlength="12" maxlength="128">
+                    </label>
+                    <small id="new-password-hint">Entre 12 et 128 caractères, différent du précédent.</small>
+                    <button type="submit" class="button button-primary">Mettre à jour le mot de passe</button>
+                    <p id="password-status" class="form-message" role="status" aria-live="polite"></p>
+                  </form>
+                </details>
+                <div class="danger-zone">
+                  <h3>Supprimer mon compte</h3>
+                  <p>Retirer définitivement votre profil, vos usages enregistrés et vos notes de cette instance.</p>
+                  <button type="button" id="open-delete-account" class="button button-danger">Supprimer mon compte</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <footer>
+          <span>
+            <strong>
+              SIGNAL
+            </strong>
+            · From Social to Screen
+          </span>
+          <span>
+            Concept indépendant · Mediawan × Albert School · Équipe 31
+          </span>
+          <a href="#sources">
+            Provenance & limites
+          </a>
+        </footer>
+      </main>
+    </div>
+    <dialog id="auth-dialog" class="auth-dialog" aria-labelledby="auth-title">
+      <button class="icon-button dialog-close" data-close="auth-dialog" aria-label="Fermer la connexion">
+        <svg class="icon">
+          <use href="#i-close"/>
+        </svg>
+      </button>
+      <span class="auth-symbol">
+        <svg class="icon">
+          <use href="#i-radar"/>
+        </svg>
+      </span>
+      <p class="eyebrow">
+        VOTRE ESPACE SIGNAL
+      </p>
+      <h2 id="auth-title">
+        Retrouvez votre veille.
+      </h2>
+      <p id="auth-description" class="muted">
+        Connectez-vous pour retrouver vos usages et vos notes.
+      </p>
+      <div class="segmented auth-tabs">
+        <button id="auth-login-tab" type="button" aria-pressed="true">
+          Connexion
+        </button>
+        <button id="auth-register-tab" type="button" aria-pressed="false">
+          Créer un compte
+        </button>
+      </div>
+      <form id="auth-form">
+        <label id="auth-name-label" hidden>
+          Nom affiché
+          <input id="auth-name" name="name" autocomplete="name" minlength="2" maxlength="80">
+        </label>
+        <label>
+          Adresse e-mail
+          <input id="auth-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="prenom@entreprise.fr">
+        </label>
+        <label>
+          Mot de passe
+          <span class="password-field">
+            <input id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="12" maxlength="128" aria-describedby="password-hint">
+            <button id="show-password" type="button" aria-label="Afficher le mot de passe">
+              Afficher
+            </button>
+          </span>
+        </label>
+        <small id="password-hint">
+          Entre 12 et 128 caractères. Utilisez un mot de passe propre à ce compte.
+        </small>
+        <p id="auth-error" class="form-error" role="alert" hidden>
+        </p>
+        <button class="button button-primary" type="submit" id="auth-submit">
+          Se connecter
+        </button>
+      </form>
+      <p class="auth-footnote">
+        Compte local pour le pilote. Aucun e-mail envoyé et aucune connexion aux systèmes Mediawan.
+      </p>
+    </dialog>
+    <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title">
+      <div class="drawer-top">
+        <span class="eyebrow">
+          EXAMINER UN USAGE
+        </span>
+        <button class="icon-button" data-close="detail-dialog" aria-label="Fermer le détail">
+          <svg class="icon">
+            <use href="#i-close"/>
+          </svg>
+        </button>
+      </div>
+      <div id="detail-content">
+      </div>
+    </dialog>
+    <dialog id="delete-dialog" class="auth-dialog" aria-labelledby="delete-title" aria-describedby="delete-description">
+      <button class="icon-button dialog-close" data-close="delete-dialog" aria-label="Annuler la suppression">
+        <svg class="icon"><use href="#i-close"/></svg>
+      </button>
+      <h2 id="delete-title">Supprimer votre compte ?</h2>
+      <p id="delete-description" class="muted">Votre profil, vos favoris et vos notes seront supprimés de cette instance locale. Cette action est irréversible.</p>
+      <form id="delete-form">
+        <label>Mot de passe actuel
+          <input id="delete-password" type="password" autocomplete="current-password" required maxlength="128">
+        </label>
+        <label>Saisissez SUPPRIMER pour confirmer
+          <input id="delete-confirmation" autocomplete="off" required pattern="SUPPRIMER" placeholder="SUPPRIMER">
+        </label>
+        <p id="delete-error" class="form-error" role="alert" hidden></p>
+        <div class="dialog-actions">
+          <button type="button" class="button button-outline" data-close="delete-dialog" autofocus>Annuler</button>
+          <button type="submit" class="button button-danger">Supprimer définitivement</button>
+        </div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    </div>
+  </body>
+</html>
