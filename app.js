@@ -1,4 +1,5 @@
-// Coquille de navigation uniquement : aucun jeu de données ou appel API automatique.
+// Navigation ; l’authentification est isolée dans account.js.
+import { initializeAccount } from "./account.js";
 const labels = { home: 'Accueil', saved: 'Ma veille', connections: 'Connexions', account: 'Compte' };
 const aliases = { radar: 'home', sources: 'connections' };
 const sidebar = document.getElementById('sidebar');
@@ -49,3 +50,5 @@ document.addEventListener('keydown', event => {
   else if (!event.shiftKey && document.activeElement === links.at(-1)) { event.preventDefault(); links[0].focus(); }
 });
 navigate();
+
+initializeAccount();

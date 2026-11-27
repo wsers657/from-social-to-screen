@@ -52,3 +52,29 @@ h1 { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-sp
   .nav-backdrop { position: fixed; inset: 0; z-index: 19; border: 0; background: #0009; }
   body.menu-open { overflow: hidden; }
 }
+
+/* Compte : un formulaire unique, aucun contenu ajouté à l'accueil. */
+.account-panel { width: 100%; max-width: 480px; margin-top: 28px; padding: 28px; border: 1px solid var(--line); border-radius: 12px; background: #10151e; }
+.auth-tabs { display: flex; gap: 8px; padding-bottom: 24px; }
+.auth-tabs button { flex: 1; padding: 11px 8px; min-height: 44px; border: 1px solid var(--line); border-radius: 7px; background: transparent; font-size: .9375rem; }
+.auth-tabs button[aria-pressed="true"] { color: var(--accent); background: #b0f5d50a; border-color: #b0f5d550; }
+#auth-form { display: grid; gap: 20px; }
+label { display: grid; gap: 8px; font-size: .9375rem; }
+input { width: 100%; min-width: 0; min-height: 46px; border: 1px solid #3a4556; border-radius: 7px; padding: 10px 12px; background: var(--background); color: var(--text); font: inherit; }
+input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.password-field { display: flex; position: relative; }
+.password-field input { padding-right: 90px; }
+.password-field button { position: absolute; inset: 1px 1px 1px auto; padding: 8px 12px; border: 0; border-left: 1px solid var(--line); background: #151b25; color: var(--muted); border-radius: 0 6px 6px 0; font-size: .875rem; }
+.field-help { color: var(--muted); margin: -12px 0 0; font-size: .875rem; }
+.primary-button, .secondary-button { min-height: 46px; padding: 11px 16px; border: 1px solid transparent; border-radius: 7px; font-weight: 600; }
+.primary-button { background: var(--accent); color: #10251c; }
+.secondary-button { background: transparent; border-color: #3a4556; }
+button:disabled { opacity: .55; cursor: wait; }
+.account-note { font-size: .875rem; color: var(--muted); margin: 20px 0 0; }
+#member-name { font-size: 1.25rem; margin: 0 0 8px; overflow-wrap: anywhere; }
+#member-email { color: var(--muted); overflow-wrap: anywhere; margin: 0; }
+#logout-button { margin-top: 24px; }
+#auth-status, #auth-error { padding: 12px; margin: 20px 0 0; font-size: .9375rem; border-radius: 7px; overflow-wrap: anywhere; }
+#auth-status { color: var(--accent); background: #b0f5d508; border: 1px solid #b0f5d526; }
+#auth-error { color: #ffc8c8; background: #ff949408; border: 1px solid #ff949440; }
+@media (max-width: 480px) { .account-panel { padding: 20px 16px; } }

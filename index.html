@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos;; img-src &apos;self&apos; data:; connect-src &apos;self&apos;; object-src &apos;none&apos;; base-uri &apos;self&apos;; form-action &apos;self&apos;">
+  <meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src &apos;self&apos;; img-src &apos;self&apos; data:; connect-src &apos;self&apos; https://xlknwceaigsmhzsthldv.supabase.co; object-src &apos;none&apos;; base-uri &apos;self&apos;; form-action &apos;self&apos;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
+  <meta name="account-api" content="https://xlknwceaigsmhzsthldv.supabase.co/functions/v1/accounts">
   <meta name="description" content="From Social to Screen — espace de travail.">
   <title>From Social to Screen</title>
   <link rel="icon" href="data:,">
@@ -56,6 +57,34 @@
       </section>
       <section id="view-account" class="view" aria-labelledby="account-heading" hidden>
         <h1 id="account-heading">Compte</h1>
+        <div class="account-panel">
+          <div id="account-guest">
+            <div class="auth-tabs" aria-label="Accès au compte">
+              <button type="button" id="login-tab" aria-pressed="true">Se connecter</button>
+              <button type="button" id="register-tab" aria-pressed="false">Créer un compte</button>
+            </div>
+            <form id="auth-form">
+              <label id="name-label" hidden>Nom<input id="auth-name" name="name" autocomplete="name" minlength="2" maxlength="80"></label>
+              <label>Adresse e-mail<input id="auth-email" name="email" type="email" autocomplete="username" maxlength="254" required></label>
+              <label>Mot de passe
+                <span class="password-field"><input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" aria-describedby="password-help" required><button type="button" id="show-password" aria-label="Afficher le mot de passe" aria-pressed="false">Afficher</button></span>
+              </label>
+              <p class="field-help" id="password-help">Entre 12 et 128 caractères.</p>
+              <label id="confirmation-label" hidden>Confirmer le mot de passe<input id="auth-confirmation" name="confirmation" type="password" autocomplete="new-password" minlength="12" maxlength="128"></label>
+              <button type="submit" class="primary-button" id="auth-submit">Se connecter</button>
+            </form>
+            <p class="account-note" id="registration-note" hidden>Création immédiate, sans validation de l’adresse par e-mail dans cette version.</p>
+            <p class="account-note">La connexion reste active dans cet onglet jusqu’à sa fermeture ou votre déconnexion.</p>
+          </div>
+          <div id="account-member" hidden>
+            <h2 id="member-name"></h2>
+            <p id="member-email"></p>
+            <p class="account-note">Votre compte est enregistré en ligne.</p>
+            <button type="button" class="secondary-button" id="logout-button">Se déconnecter</button>
+          </div>
+          <p id="auth-status" role="status" aria-live="polite" hidden></p>
+          <p id="auth-error" role="alert" hidden></p>
+        </div>
       </section>
     </main>
   </div>
